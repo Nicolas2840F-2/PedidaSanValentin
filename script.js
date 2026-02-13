@@ -1,8 +1,23 @@
 const yesBtn = document.getElementById('yes-btn');
 const noBtn = document.getElementById('no-btn');
+const yesBtn2 = document.getElementById('yes-btn2');
+const noBtn2 = document.getElementById('no-btn2');
 const message = document.getElementById('message');
+const message2 = document.getElementById('message2');
 const questionContainer = document.getElementById('question-container');
 const successContainer = document.getElementById('success-container');
+const welcomeContainer = document.getElementById('welcome-container');
+const revealBtn = document.getElementById('reveal-btn');
+const photo = document.getElementById('photo');
+
+revealBtn.addEventListener('click', () => {
+    revealBtn.classList.add('hide'); // animación botón
+
+    setTimeout(() => {
+        revealBtn.style.display = 'none';
+        photo.classList.add('show'); // animación imagen
+    }, 400);
+});
 
 const noMessages = [
     '¿Estás segura? 🥺',
@@ -14,6 +29,15 @@ const noMessages = [
 ];
 
 let noClickCount = 0;
+
+noBtn2.addEventListener('click',()=>{
+    message2.textContent = 'Mientes, estoy seguro de que eres tu...';
+    noBtn2.classList.add('hidden');
+    setTimeout(()=>{
+        message2.textContent = '';
+    },3000);
+    
+});
 
 // Comportamiento del botón "No"
 noBtn.addEventListener('click', () => {
@@ -27,13 +51,19 @@ noBtn.addEventListener('click', () => {
         noBtn.style.transform = `scale(${newSize})`;
         
         // El botón "Yes" se hace más grande
-        const yesSize = 1 + (noClickCount * 0.15);
+        const yesSize = 1 + (noClickCount * 0.1);
         yesBtn.style.transform = `scale(${yesSize})`;
     } else {
         // Después de muchos clics, el botón "No" desaparece
         noBtn.style.display = 'none';
-        message.textContent = '¡Ya solo queda una opción! 😊💖';
+        message.textContent = '¡Ya solo queda una opción! 😝😝';
     }
+});
+
+yesBtn2.addEventListener('click', ()=>{
+    welcomeContainer.classList.add('hidden');
+    questionContainer.classList.remove('hidden');
+    questionContainer.classList.add('container');
 });
 
 // Comportamiento del botón "Sí"
